@@ -14,11 +14,16 @@ func _init(class_data: Dictionary) -> void:
 
 	var id_counter = 0
 	var all_entities = _find_all_entities(class_data["path"])
+	var editor_plugin: EditorPlugin = Engine.get_meta("PandoraEditorPlugin", null)
+	# Prevent button from expanding to selected icon size.
+	property_control.set_expand_icon(true)
 
 	for entity in all_entities:
 		property_control.get_popup().add_icon_item(
 			load(entity.get_icon_path()), entity.get_entity_name(), id_counter
 		)
+		if editor_plugin:
+			property_control.get_popup().set_item_icon_max_width(id_counter, editor_plugin.get_editor_interface().get_editor_scale() * 16)
 		# Godot 4.1+
 		if property_control.get_popup().has_method("set_item_icon_modulate"):
 			property_control.get_popup().set_item_icon_modulate(id_counter, entity.get_icon_color())
