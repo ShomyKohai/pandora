@@ -63,6 +63,7 @@ func _find_all_entities(script_path: String) -> Array[PandoraEntity]:
 		if category._script_path == script_path:
 			var entities = Pandora.get_all_entities(category)
 			for entity in entities:
+				if entity in all_entities: continue
 				all_entities.append(entity)
 	if all_entities.is_empty():
 		all_entities = Pandora.get_all_entities()
