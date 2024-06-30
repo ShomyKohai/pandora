@@ -51,6 +51,7 @@ func _update_property() -> void:
 func _update_deferred() -> void:
 	var current_entity = get_edited_object()[get_edited_property()] as PandoraEntity
 	if current_entity == null:
+		property_control.select(-1)
 		return
 	for id in ids_to_entities.keys():
 		if ids_to_entities[id].get_entity_id() == current_entity.get_entity_id():
