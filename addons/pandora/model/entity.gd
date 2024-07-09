@@ -531,7 +531,7 @@ func get_resource(property_name: String) -> Resource:
 	# Here, instead of returning the default value and casting it to Resource,
 	# we check its type and we handle it accordingly.
 	var default_value = get_entity_property(property_name).get_default_value()
-	if default_value is not Resource:
+	if not default_value is Resource:
 		return load(default_value)
 	return default_value
 
