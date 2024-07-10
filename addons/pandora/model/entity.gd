@@ -526,7 +526,7 @@ func get_resource(property_name: String) -> Resource:
 	if not has_entity_property(property_name):
 		push_warning("unknown resource property %s on entity %s" % [property_name, get_entity_id()])
 		return null
-	# HACK: For some reason in Godot 4.3, resource properties are
+	# FIXME: For some reason in Godot 4.3, resource properties are
 	# are considered Strings on exported builds with GDScript mode set to binary tokens.
 	# Here, instead of returning the default value and casting it to Resource,
 	# we check its type and we handle it accordingly.
